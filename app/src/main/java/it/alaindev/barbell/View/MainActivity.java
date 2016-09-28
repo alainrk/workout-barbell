@@ -1,10 +1,11 @@
 package it.alaindev.barbell.View;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
-import android.util.Log;
+import android.support.v4.app.ShareCompat;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -24,14 +25,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import it.alaindev.barbell.Exercise;
 import it.alaindev.barbell.R;
+import it.alaindev.barbell.SecureConst;
+import it.alaindev.barbell.User;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, ParamsFragment.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener, ParamsFragment.OnParamsFragInteractionListener {
 
-    private FirebaseUser user;
-    private FirebaseDatabase database;
+//    private static FirebaseUser user;
+//    private static FirebaseDatabase database;
+//    private boolean hackForUserAdd = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,37 +61,38 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        user = FirebaseAuth.getInstance().getCurrentUser();
-        database = FirebaseDatabase.getInstance();
+//        user = FirebaseAuth.getInstance().getCurrentUser();
+//        database = FirebaseDatabase.getInstance();
+//        getBodyParams();
 
-        DatabaseReference ref_exercises = database.getReference("exercises");
-
-//        tv.setText("Ciao "+user.getDisplayName()+" "+user.getEmail()+" "+user.getProviderId()+"!!!");
-
-        ref_exercises
-                .orderByChild("biglift")
-                .equalTo(true)
-                .addValueEventListener(new ValueEventListener() {
-                    @Override
-                    // This method is called once with the initial value and again
-                    // whenever data at this location is updated
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        String res = "";
-                        for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-                            Exercise ex = postSnapshot.getValue(Exercise.class);
-                            res += ex.getName() + " " + ex.getType() + "\n";
-                        }
-                        try {
-                            Toast.makeText(getApplicationContext(), res, Toast.LENGTH_LONG).show();
-                        }
-                        catch (Exception e) {}
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError error) {
-                    }
-                });
     }
+
+//    private void getBodyParams() {
+//        DatabaseReference ref = database.getReference(SecureConst.FIREBASE_USERS);
+//
+//        ref.orderByChild(SecureConst.FIREBASE_USER_UID)
+//                .equalTo(user.getUid())
+//                .addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                Object o = dataSnapshot.getValue();
+//                if (o == null && !hackForUserAdd) {
+//                    hackForUserAdd = true;
+//                    DatabaseReference user_ref = database.getReference("users");
+//                    User u = new User(user.getUid(), "Your name", 25, 70, 180);
+//                    user_ref.push().setValue(u);
+//                }
+//                else {
+//                    Toast.makeText(getApplicationContext(), dataSnapshot.getValue().toString(), Toast.LENGTH_LONG).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
+//    }
 
     @Override
     public void onBackPressed() {
@@ -147,15 +151,17 @@ public class MainActivity extends AppCompatActivity
                     workoutsFragment.getTag()
             ).commit();
         } else if (id == R.id.nav_params) {
-            ParamsFragment paramsFragment = ParamsFragment.newInstance("Porco","dio");
+            ParamsFragment paramsFragment = ParamsFragment.newInstance();
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(
                     R.id.contentMain_forFragments,
                     paramsFragment,
                     paramsFragment.getTag()
             ).commit();
-        } else if (id == R.id.nav_share) {
-
+        } else if (id == R.id.nav_logout) {
+            Intent logoutintent = new Intent(this, LoginActivity.class);
+            logoutintent.setAction("logout");
+            startActivity(logoutintent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

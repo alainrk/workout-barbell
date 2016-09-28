@@ -19,6 +19,7 @@ package it.alaindev.barbell.View;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -41,9 +42,15 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import it.alaindev.barbell.R;
 import it.alaindev.barbell.SecureConst;
+import it.alaindev.barbell.User;
 
 /**
  * Demonstrate Firebase Authentication using a Google ID Token.
@@ -54,14 +61,11 @@ public class LoginActivity extends AppCompatActivity implements
 
     private static final String TAG = "GoogleActivity";
     private static final int RC_SIGN_IN = 9001;
+    private boolean hackForUserAdd = false;
+    private boolean hereToLogout = false;
 
-    // [START declare_auth]
     private FirebaseAuth mAuth;
-    // [END declare_auth]
-
-    // [START declare_auth_listener]
     private FirebaseAuth.AuthStateListener mAuthListener;
-    // [END declare_auth_listener]
 
     private GoogleApiClient mGoogleApiClient;
     private TextView mStatusTextView;
@@ -81,57 +85,48 @@ public class LoginActivity extends AppCompatActivity implements
         findViewById(R.id.sign_out_button).setOnClickListener(this);
         findViewById(R.id.disconnect_button).setOnClickListener(this);
 
-        // [START config_signin]
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
-        // [END config_signin]
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
-        // [START initialize_auth]
         mAuth = FirebaseAuth.getInstance();
-        // [END initialize_auth]
 
-        // [START auth_state_listener]
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-
-                    Firebase.setAndroidContext(LoginActivity.this);
-                    Firebase firebase = new Firebase(SecureConst.firebaseRootUri);
-                    Intent mainact = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(mainact);
+                    onSuccessfullyLoggedIn();
                 } else {
                     // User is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
                 }
-                // [START_EXCLUDE]
+
                 updateUI(user);
-                // [END_EXCLUDE]
             }
         };
-        // [END auth_state_listener]
+
+        Intent i = getIntent();
+        if (i.getAction().equalsIgnoreCase("logout"))
+            hereToLogout = true;
     }
 
-    // [START on_start_add_listener]
     @Override
     public void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
     }
-    // [END on_start_add_listener]
 
-    // [START on_stop_remove_listener]
     @Override
     public void onStop() {
         super.onStop();
@@ -139,9 +134,7 @@ public class LoginActivity extends AppCompatActivity implements
             mAuth.removeAuthStateListener(mAuthListener);
         }
     }
-    // [END on_stop_remove_listener]
 
-    // [START onactivityresult]
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -155,20 +148,13 @@ public class LoginActivity extends AppCompatActivity implements
                 firebaseAuthWithGoogle(account);
             } else {
                 // Google Sign In failed, update UI appropriately
-                // [START_EXCLUDE]
                 updateUI(null);
-                // [END_EXCLUDE]
             }
         }
     }
-    // [END onactivityresult]
-
-    // [START auth_with_google]
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
-        // [START_EXCLUDE silent]
         showProgressDialog();
-        // [END_EXCLUDE]
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         mAuth.signInWithCredential(credential)
@@ -185,20 +171,15 @@ public class LoginActivity extends AppCompatActivity implements
                             Toast.makeText(LoginActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         }
-                        // [START_EXCLUDE]
                         hideProgressDialog();
-                        // [END_EXCLUDE]
                     }
                 });
     }
-    // [END auth_with_google]
 
-    // [START signin]
     private void signIn() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
-    // [END signin]
 
     private void signOut() {
         // Firebase sign out
@@ -272,5 +253,64 @@ public class LoginActivity extends AppCompatActivity implements
 
     private void hideProgressDialog() {
 
+    }
+
+    private void onSuccessfullyLoggedIn() {
+        final FirebaseUser user;
+        final FirebaseDatabase database;
+
+        // Set up firebase variables valid in all the app
+        Firebase.setAndroidContext(LoginActivity.this);
+        Firebase firebase = new Firebase(SecureConst.FIREBASE_BASEURI);
+
+        // Send user data to firebase db
+
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        database = FirebaseDatabase.getInstance();
+
+        DatabaseReference ref = database.getReference(SecureConst.FIREBASE_USERS);
+
+        // Check if there is this user in firebase DB
+        ref.orderByChild(SecureConst.FIREBASE_USER_UID)
+                .equalTo(user.getUid())
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        Object o = dataSnapshot.getValue();
+                        // There is no user entry, add it
+                        if (o == null && !hackForUserAdd) {
+                            hackForUserAdd = true;
+                            DatabaseReference user_ref = database.getReference(SecureConst.FIREBASE_USERS);
+                            User u = new User(user.getUid(), "Your name", 25, 70, 180);
+                            user_ref.push().setValue(u).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                // If adding succeed start activity
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Intent mainact = new Intent(LoginActivity.this, MainActivity.class);
+                                        startActivity(mainact);
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), "Login did not succeed. Try again.", Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
+                        }
+                        else {
+                            // We are already logged AND firebase entry exists AND we are not here from app to logout
+                            if (!hereToLogout) {
+                                Intent mainact = new Intent(LoginActivity.this, MainActivity.class);
+                                startActivity(mainact);
+                            } else {
+                                // Come back to normal value to allow user enter the app once is logged again
+                                hereToLogout = false;
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
     }
 }
