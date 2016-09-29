@@ -9,6 +9,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,15 +26,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import it.alaindev.barbell.DescValAdapter;
 import it.alaindev.barbell.R;
 import it.alaindev.barbell.SecureConst;
 import it.alaindev.barbell.User;
 
-import com.rey.material.widget.EditText;
-import com.rey.material.widget.ListView;
-
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class ParamsFragment extends Fragment {
 
@@ -128,8 +128,11 @@ public class ParamsFragment extends Fragment {
     }
 
     private void fillUI (User user) {
-        ArrayList<HashMap<String, String>> al = new ArrayList<>();
-        // TODO fill with couples <string, string> of user's data
+        ArrayList<Map.Entry<String, String>> al = user.toMapEntryList();
+
+        DescValAdapter adapter = new DescValAdapter(getActivity(), al);
+        lv.setAdapter(adapter);
+
         // TODO fill UI with DescAndValAdapter
     }
 }

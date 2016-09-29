@@ -10,16 +10,17 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by narko on 29/09/16.
  */
 
-public class DescValAdapter extends ArrayAdapter<HashMap<String, String>> {
+public class DescValAdapter extends ArrayAdapter<Map.Entry<String, String>> {
 
     private Context context;
 
-    public DescValAdapter(Context context, ArrayList<HashMap<String, String>> descval) {
+    public DescValAdapter(Context context, ArrayList<Map.Entry<String, String>> descval) {
         super(context, 0, descval);
         this.context = context;
     }
@@ -27,7 +28,8 @@ public class DescValAdapter extends ArrayAdapter<HashMap<String, String>> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
-        HashMap<String, String> descval = getItem(position);
+
+        Map.Entry<String, String> descval = getItem(position);
 
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
@@ -38,8 +40,8 @@ public class DescValAdapter extends ArrayAdapter<HashMap<String, String>> {
         TextView valtv = (TextView) convertView.findViewById(R.id.valtv);
         // Populate the data into the template view using the data object
         // TODO fill with key and val
-//        desctv.setText(descval.desc);
-//        valtv.setText(descval.val);
+        desctv.setText(descval.getKey());
+        valtv.setText(descval.getValue());
         // Return the completed view to render on screen
         return convertView;
     }

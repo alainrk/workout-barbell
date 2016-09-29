@@ -1,5 +1,8 @@
 package it.alaindev.barbell;
 
+import java.util.ArrayList;
+import java.util.Map;
+
 /**
  * Created by narko on 27/09/16.
  */
@@ -31,6 +34,15 @@ public class User {
 
     public String toString() {
         return "User "+uid+", "+name+". Age: "+age+", Weight: "+weight+", Height: "+height+", Activity: "+activity+", NumWOs: "+numwos+", Minutes: "+minutes;
+    }
+
+    public ArrayList<Map.Entry<String, String>> toMapEntryList() {
+        ArrayList<Map.Entry<String, String>> al = new ArrayList<>();
+        al.add(Utils.createMapEntry("uid", uid));
+        al.add(Utils.createMapEntry("name", name));
+        al.add(Utils.createMapEntry("age", Integer.toString(age)));
+
+        return al;
     }
 
     public String getUid() {
