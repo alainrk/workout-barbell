@@ -38,9 +38,14 @@ public class User {
 
     public ArrayList<Map.Entry<String, String>> toMapEntryList() {
         ArrayList<Map.Entry<String, String>> al = new ArrayList<>();
-        al.add(Utils.createMapEntry("uid", uid));
+        //al.add(Utils.createMapEntry("uid", uid));
         al.add(Utils.createMapEntry("name", name));
         al.add(Utils.createMapEntry("age", Integer.toString(age)));
+        al.add(Utils.createMapEntry("weight", Integer.toString(weight)));
+        al.add(Utils.createMapEntry("height", Integer.toString(height)));
+        al.add(Utils.createMapEntry("activity", Integer.toString(activity)));
+        al.add(Utils.createMapEntry("numwos", Integer.toString(numwos)));
+        al.add(Utils.createMapEntry("minutes", Integer.toString(minutes)));
 
         return al;
     }

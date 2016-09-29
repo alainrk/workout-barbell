@@ -35,14 +35,44 @@ public class DescValAdapter extends ArrayAdapter<Map.Entry<String, String>> {
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.desc_and_val, parent, false);
         }
-        // Lookup view for data population
+
         TextView desctv = (TextView) convertView.findViewById(R.id.desctv);
         TextView valtv = (TextView) convertView.findViewById(R.id.valtv);
+
         // Populate the data into the template view using the data object
-        // TODO fill with key and val
-        desctv.setText(descval.getKey());
-        valtv.setText(descval.getValue());
-        // Return the completed view to render on screen
+        String desc = descval.getKey();
+        String val = descval.getValue();
+        switch (desc) {
+            case "name":
+                desc = "Name";
+                break;
+            case "age":
+                desc = "Age";
+                break;
+            case "weight":
+                desc = "Weight";
+                val += " kg";
+                break;
+            case "height":
+                desc = "Height";
+                val += " cm";
+                break;
+            case "activity":
+                desc = "Daily activity";
+                val += "/4";
+                break;
+            case "numwos":
+                desc = "Workouts per week";
+                break;
+            case "minutes":
+                desc = "Workout time duration";
+                val += " min";
+                break;
+        }
+
+        desctv.setText(desc);
+        valtv.setText(val);
+
         return convertView;
     }
 

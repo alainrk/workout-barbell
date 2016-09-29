@@ -5,14 +5,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.text.InputType;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -132,6 +136,29 @@ public class ParamsFragment extends Fragment {
 
         DescValAdapter adapter = new DescValAdapter(getActivity(), al);
         lv.setAdapter(adapter);
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                try {
+                    Map.Entry<String, String> item = (Map.Entry<String, String>) parent.getItemAtPosition(position);
+                    new MaterialDialog.Builder(getActivity())
+                            .title("Daje aho!!")
+                            .content(item.getKey()+" "+item.getValue())
+                            .inputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)
+                            .input("Hint", "Prefill sta nventa oh!", new MaterialDialog.InputCallback() {
+                                @Override
+                                public void onInput(MaterialDialog dialog, CharSequence input) {
+                                    Toast.makeText(getActivity(), "toast", Toast.LENGTH_LONG).show();
+                                }
+                            }).show();
+                } catch (Exception e) {
+                    Log.d("", "");
+                }
+
+
+            }
+        });
 
         // TODO fill UI with DescAndValAdapter
     }
