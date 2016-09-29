@@ -10,16 +10,27 @@ public class User {
     private int age;
     private int weight;
     private int height;
+    private int activity; // level of activity (1/4)
+    private int numwos; // number of workouts in week
+    private int minutes; // minutes in wo
+
 
     public User() {
     }
 
-    public User(String uid, String name, int age, int weight, int height) {
+    public User(String uid, String name, int age, int weight, int height, int activity, int numwos, int minutes) {
         this.uid = uid;
         this.name = name;
         this.age = age;
         this.weight = weight;
         this.height = height;
+        this.activity = activity;
+        this.numwos = numwos;
+        this.minutes = minutes;
+    }
+
+    public String toString() {
+        return "User "+uid+", "+name+". Age: "+age+", Weight: "+weight+", Height: "+height+", Activity: "+activity+", NumWOs: "+numwos+", Minutes: "+minutes;
     }
 
     public String getUid() {
@@ -40,5 +51,18 @@ public class User {
 
     public int getHeight() {
         return height;
+    }
+
+
+    public int getActivity() {
+        return activity;
+    }
+
+    public int getNumwos() {
+        return numwos;
+    }
+
+    public int getMinutes() {
+        return minutes;
     }
 }
