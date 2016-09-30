@@ -16,12 +16,13 @@ public class User {
     private int activity; // level of activity (1/4)
     private int numwos; // number of workouts in week
     private int minutes; // minutes in wo
+    private int hardwo; // intensity in wo (1/4)
 
 
     public User() {
     }
 
-    public User(String uid, String name, int age, int weight, int height, int activity, int numwos, int minutes) {
+    public User(String uid, String name, int age, int weight, int height, int activity, int numwos, int minutes, int hardwo) {
         this.uid = uid;
         this.name = name;
         this.age = age;
@@ -30,10 +31,11 @@ public class User {
         this.activity = activity;
         this.numwos = numwos;
         this.minutes = minutes;
+        this.hardwo = hardwo;
     }
 
     public String toString() {
-        return "User "+uid+", "+name+". Age: "+age+", Weight: "+weight+", Height: "+height+", Activity: "+activity+", NumWOs: "+numwos+", Minutes: "+minutes;
+        return "User "+uid+", "+name+". Age: "+age+", Weight: "+weight+", Height: "+height+", Activity: "+activity+", NumWOs: "+numwos+", Minutes: "+minutes+", Intensity: "+hardwo;
     }
 
     public ArrayList<Map.Entry<String, String>> toMapEntryList() {
@@ -46,6 +48,7 @@ public class User {
         al.add(Utils.createMapEntry("activity", Integer.toString(activity)));
         al.add(Utils.createMapEntry("numwos", Integer.toString(numwos)));
         al.add(Utils.createMapEntry("minutes", Integer.toString(minutes)));
+        al.add(Utils.createMapEntry("hardwo", Integer.toString(hardwo)));
 
         return al;
     }
@@ -81,5 +84,9 @@ public class User {
 
     public int getMinutes() {
         return minutes;
+    }
+
+    public int getHardwo() {
+        return hardwo;
     }
 }

@@ -28,16 +28,16 @@ public class Utils {
         };
     }
 
-    public static boolean isValidAge(String s) {
-        int age;
+    public static Integer getIfValidInt(String s) {
+        Integer i;
         try {
-            age = Integer.parseInt(s);
+            i = Integer.parseInt(s);
         } catch(NumberFormatException e) {
-            return false;
+            return null;
         } catch(NullPointerException e) {
-            return false;
+            return null;
         }
 
-        return (age < 120 && age > 0);
+        return i;
     }
 }

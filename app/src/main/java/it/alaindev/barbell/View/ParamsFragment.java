@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -146,24 +147,43 @@ public class ParamsFragment extends Fragment {
                 try {
                     final Map.Entry<String, String> item = (Map.Entry<String, String>) parent.getItemAtPosition(position);
 
+//                    NumberPicker np = (NumberPicker) view.findViewById(R.id.numberpickerdate);
+//                    np.setMinValue(1);
+//                    np.setMaxValue(120);
+//                    np.setDisplayedValues(new String[]{"25","26","27"});
+//                    np.setValue(30);
+//                    np.setWrapSelectorWheel(false);
+//                    np.setOnScrollListener(new NumberPicker.OnScrollListener() {
+//                        @Override
+//                        public void onScrollStateChange(NumberPicker view, int scrollState) {
+//                            Toast.makeText(getActivity(), scrollState+"", Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
+
+
                     // TODO switch to discriminate what to do and what kind of type show in the dialog to edit
 
 //                    int type = InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD;
                     int type = InputType.TYPE_NUMBER_FLAG_DECIMAL;
 
                     new MaterialDialog.Builder(getActivity())
-                            .title("Daje aho!!")
-                            .content(item.getKey()+" "+item.getValue())
-                            .inputType(type)
-                            .negativeText("Invalid data format")
+                            .title(Constants.convertParamsDesc(item.getKey()))
+                            .content(Constants.getDescriptionParamsDesc(item.getKey()))
+                            .inputType(Constants.getInputTypeParamsDesc(item.getKey()))
                             .alwaysCallInputCallback()
-                            .input("Hint", "Prefill sta nventa oh!", new MaterialDialog.InputCallback() {
+                            .input("Hint", item.getValue(), new MaterialDialog.InputCallback() {
                                 @Override
                                 public void onInput(MaterialDialog dialog, CharSequence input) {
                                     // If input inserted is not valid disable commit changes
-                                    dialog.getActionButton(DialogAction.POSITIVE).setEnabled( checkValidityInput(item.getKey(), input.toString()) );
-                                    // TODO update firebase and CHECK if automatically update with the callback in getUserInfo()
-                                    Toast.makeText(getActivity(), "toast", Toast.LENGTH_LONG).show();
+                                    boolean validity = checkValidityInput(item.getKey(), input.toString());
+                                    if (validity) {
+                                        dialog.getActionButton(DialogAction.POSITIVE).setEnabled(true);
+                                    } else {
+                                        dialog.getActionButton(DialogAction.POSITIVE).setEnabled(false);
+                                    }
+
+                                   // TODO update firebase and CHECK if automatically update with the callback in getUserInfo()
+
                                 }
                             }).show();
                 } catch (Exception e) {
@@ -177,22 +197,38 @@ public class ParamsFragment extends Fragment {
 
     private boolean checkValidityInput (String key, String input) {
         boolean res = false;
+        Integer i;
         switch (key) {
             case Constants.USER_PARAM_NAME:
                 res = (input.length() > 3 && input.length() < 20);
                 break;
             case Constants.USER_PARAM_AGE:
-                res = (Utils.isValidAge(input));
+                i = (Utils.getIfValidInt(input));
+                res = (i != null && (i > 0 && i < 121));
                 break;
             case Constants.USER_PARAM_WEIGHT:
+                i = (Utils.getIfValidInt(input));
+                res = (i != null && (i > 29 && i < 351));
                 break;
             case Constants.USER_PARAM_HEIGHT:
+                i = (Utils.getIfValidInt(input));
+                res = (i != null && (i > 29 && i < 301));
                 break;
             case Constants.USER_PARAM_ACTIV:
+                i = (Utils.getIfValidInt(input));
+                res = (i != null && (i > 0 && i < 5));
                 break;
             case Constants.USER_PARAM_NUMWOS:
+                i = (Utils.getIfValidInt(input));
+                res = (i != null && (i > 0 && i < 8));
                 break;
             case Constants.USER_PARAM_MINUTES:
+                i = (Utils.getIfValidInt(input));
+                res = (i != null && (i > 0 && i < 361));
+                break;
+            case Constants.USER_PARAM_HARDWO:
+                i = (Utils.getIfValidInt(input));
+                res = (i != null && (i > 0 && i < 5));
                 break;
         }
         return res;

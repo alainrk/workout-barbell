@@ -68,6 +68,10 @@ public class DescValAdapter extends ArrayAdapter<Map.Entry<String, String>> {
                 desc = Constants.USER_PARAM_MINUTES_DESC;
                 val += " min";
                 break;
+            case Constants.USER_PARAM_HARDWO:
+                desc = Constants.USER_PARAM_HARDWO_DESC;
+                val += "/4";
+                break;
         }
 
         desctv.setText(desc);
