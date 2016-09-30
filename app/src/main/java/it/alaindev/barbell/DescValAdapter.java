@@ -43,29 +43,29 @@ public class DescValAdapter extends ArrayAdapter<Map.Entry<String, String>> {
         String desc = descval.getKey();
         String val = descval.getValue();
         switch (desc) {
-            case "name":
-                desc = "Name";
+            case Constants.USER_PARAM_NAME:
+                desc = Constants.USER_PARAM_NAME_DESC;
                 break;
-            case "age":
-                desc = "Age";
+            case Constants.USER_PARAM_AGE:
+                desc = Constants.USER_PARAM_AGE_DESC;
                 break;
-            case "weight":
-                desc = "Weight";
+            case Constants.USER_PARAM_WEIGHT:
+                desc = Constants.USER_PARAM_WEIGHT_DESC;
                 val += " kg";
                 break;
-            case "height":
-                desc = "Height";
+            case Constants.USER_PARAM_HEIGHT:
+                desc = Constants.USER_PARAM_HEIGHT_DESC;
                 val += " cm";
                 break;
-            case "activity":
-                desc = "Daily activity";
+            case Constants.USER_PARAM_ACTIV:
+                desc = Constants.USER_PARAM_ACTIV_DESC;
                 val += "/4";
                 break;
-            case "numwos":
-                desc = "Workouts per week";
+            case Constants.USER_PARAM_NUMWOS:
+                desc = Constants.USER_PARAM_NUMWOS_DESC;
                 break;
-            case "minutes":
-                desc = "Workout time duration";
+            case Constants.USER_PARAM_MINUTES:
+                desc = Constants.USER_PARAM_MINUTES_DESC;
                 val += " min";
                 break;
         }

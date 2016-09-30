@@ -27,4 +27,17 @@ public class Utils {
             }
         };
     }
+
+    public static boolean isValidAge(String s) {
+        int age;
+        try {
+            age = Integer.parseInt(s);
+        } catch(NumberFormatException e) {
+            return false;
+        } catch(NullPointerException e) {
+            return false;
+        }
+
+        return (age < 120 && age > 0);
+    }
 }

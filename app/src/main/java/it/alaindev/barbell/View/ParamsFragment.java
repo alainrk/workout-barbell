@@ -16,6 +16,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -30,10 +31,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import it.alaindev.barbell.Constants;
 import it.alaindev.barbell.DescValAdapter;
 import it.alaindev.barbell.R;
 import it.alaindev.barbell.SecureConst;
 import it.alaindev.barbell.User;
+import it.alaindev.barbell.Utils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -141,14 +144,25 @@ public class ParamsFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 try {
-                    Map.Entry<String, String> item = (Map.Entry<String, String>) parent.getItemAtPosition(position);
+                    final Map.Entry<String, String> item = (Map.Entry<String, String>) parent.getItemAtPosition(position);
+
+                    // TODO switch to discriminate what to do and what kind of type show in the dialog to edit
+
+//                    int type = InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD;
+                    int type = InputType.TYPE_NUMBER_FLAG_DECIMAL;
+
                     new MaterialDialog.Builder(getActivity())
                             .title("Daje aho!!")
                             .content(item.getKey()+" "+item.getValue())
-                            .inputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)
+                            .inputType(type)
+                            .negativeText("Invalid data format")
+                            .alwaysCallInputCallback()
                             .input("Hint", "Prefill sta nventa oh!", new MaterialDialog.InputCallback() {
                                 @Override
                                 public void onInput(MaterialDialog dialog, CharSequence input) {
+                                    // If input inserted is not valid disable commit changes
+                                    dialog.getActionButton(DialogAction.POSITIVE).setEnabled( checkValidityInput(item.getKey(), input.toString()) );
+                                    // TODO update firebase and CHECK if automatically update with the callback in getUserInfo()
                                     Toast.makeText(getActivity(), "toast", Toast.LENGTH_LONG).show();
                                 }
                             }).show();
@@ -159,7 +173,29 @@ public class ParamsFragment extends Fragment {
 
             }
         });
-
-        // TODO fill UI with DescAndValAdapter
     }
+
+    private boolean checkValidityInput (String key, String input) {
+        boolean res = false;
+        switch (key) {
+            case Constants.USER_PARAM_NAME:
+                res = (input.length() > 3 && input.length() < 20);
+                break;
+            case Constants.USER_PARAM_AGE:
+                res = (Utils.isValidAge(input));
+                break;
+            case Constants.USER_PARAM_WEIGHT:
+                break;
+            case Constants.USER_PARAM_HEIGHT:
+                break;
+            case Constants.USER_PARAM_ACTIV:
+                break;
+            case Constants.USER_PARAM_NUMWOS:
+                break;
+            case Constants.USER_PARAM_MINUTES:
+                break;
+        }
+        return res;
+    }
+
 }

@@ -3,11 +3,74 @@
 
     <item
         is-multidex="true"
+        jar="/home/narko/code/Barbell/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="43b2dba6b5a0b14527961b75329d0b90025f15ea">
+        <dex dex="/home/narko/code/Barbell/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-24.2.1_3d6af8504365833c970f195c6539be1eb888350f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/narko/code/Barbell/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="867dad63c33388ff8c7644b236579355036d075f">
+        <dex dex="/home/narko/code/Barbell/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_b9c87f237d1fb8e6225fe44a5e339e72bc0b7c40/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/narko/code/Barbell/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics-impl/9.6.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="0efd1b44f47c134fb245914a1d54a55adbfc2f8d">
+        <dex dex="/home/narko/code/Barbell/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-analytics-impl-9.6.1_b026fcecc2b0b0ccd567ccb2e3736b332711865b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/narko/code/Barbell/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
+        <dex dex="/home/narko/code/Barbell/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_fcdb24f359d5dcdf60e0a41fe75c8b417ad1364f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/narko/code/Barbell/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/24.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="7521486d9bfd2cd9e756e0cf75ed7d97f2ce2d3b">
+        <dex dex="/home/narko/code/Barbell/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-24.2.1_a53d00d9fc2179b481b1560b9501a0dd93fd1e00/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/narko/code/Barbell/app/build/intermediates/exploded-aar/com.google.firebase/firebase-common/9.6.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="1ef72e72bc0d05602c366582afa9439f58bb31d6">
+        <dex dex="/home/narko/code/Barbell/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-common-9.6.1_1354fae3cfd5bd41106ae56255ca218b2fe5c7d7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/narko/code/Barbell/app/build/intermediates/exploded-aar/com.google.firebase/firebase-database/9.6.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="b75ecdd04a37d31b4a0da2729fc5c558962a529b">
+        <dex dex="/home/narko/code/Barbell/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-database-9.6.1_c34f666316a3fc7fe5684133166793e6b24a8977/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/home/narko/code/Barbell/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.2"
-        sha1="00051313da97ce7ff68c7a6986eef8e2b4bacbe5">
+        sha1="937883f303d52b69d4a0373dbb881e612efaaef3">
         <dex dex="/home/narko/code/Barbell/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_d3fbf4e60d7c28fe33606b55b900720053734a0b/classes.dex" />
     </item>
     <item
@@ -30,6 +93,24 @@
     </item>
     <item
         is-multidex="true"
+        jar="/home/narko/code/Barbell/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
+        <dex dex="/home/narko/code/Barbell/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-ui-24.2.1_90f3250f86a39b4cd570b444cca815f8171f082e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/narko/code/Barbell/app/build/intermediates/exploded-aar/com.google.firebase/firebase-iid/9.6.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="1e14ebe1cda8491f152083e752ca5bf73cd37bff">
+        <dex dex="/home/narko/code/Barbell/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-iid-9.6.1_a8ec3b4e8d355de244925d49d483ba4f198dbb1c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/home/narko/code/Barbell/app/build/intermediates/exploded-aar/com.github.rey5137/material/1.2.4/jars/classes.jar"
         jumboMode="true"
         optimize="true"
@@ -48,12 +129,39 @@
     </item>
     <item
         is-multidex="true"
+        jar="/home/narko/code/Barbell/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
+        <dex dex="/home/narko/code/Barbell/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_bdc24f87b394a79c004eeece4e8e162e080a0e69/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/home/narko/code/Barbell/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.2"
-        sha1="32106819e56b792dfbb980258aa3937d02bd878c">
+        sha1="5068050450f6d097910a2ab861f7b434b5175cb7">
         <dex dex="/home/narko/code/Barbell/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_348761d6326b684a5309d7bd9cd3fe03c1cb25d1/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/narko/code/Barbell/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="09b462bbcb77650284bd6614f1a32f360ef369f8">
+        <dex dex="/home/narko/code/Barbell/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-media-compat-24.2.1_b39e9c3bfa76121579ffe24cf9f78de5a7f7e3b8/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/narko/code/Barbell/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
+        <dex dex="/home/narko/code/Barbell/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-fragment-24.2.1_6d51c6839085b398a3eb2e04470a4313524056e3/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -75,6 +183,24 @@
     </item>
     <item
         is-multidex="true"
+        jar="/home/narko/code/Barbell/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="d5c731fc64c03dfe04d51134955b483551c35849">
+        <dex dex="/home/narko/code/Barbell/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-24.2.1_553cab2558ec460e65c49d5d836ecdf7dbf6abe3/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/narko/code/Barbell/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
+        <dex dex="/home/narko/code/Barbell/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-compat-24.2.1_3b60cd8329c763e541dc67152af8d2f597d5082f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/home/narko/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.2.2/285cb9c666f0f0f3dd8a1be04e1f457eb7b15113/jackson-annotations-2.2.2.jar"
         jumboMode="true"
         optimize="true"
@@ -84,21 +210,48 @@
     </item>
     <item
         is-multidex="true"
+        jar="/home/narko/code/Barbell/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
+        <dex dex="/home/narko/code/Barbell/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-24.2.1_67cd8d309875b0dc28fd1a70f4cc348240c0d436/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/narko/code/Barbell/app/build/intermediates/exploded-aar/me.zhanghai.android.materialprogressbar/library/1.1.7/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="1478a113f04bf0b679037b4f6bd88bd1837b96a3">
+        <dex dex="/home/narko/code/Barbell/app/build/intermediates/transforms/dex/debug/folders/1000/10/me.zhanghai.android.materialprogressbar-library-1.1.7_f1394362ffd16b5db428964339901564dc3610d9/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/narko/code/Barbell/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
+        <dex dex="/home/narko/code/Barbell/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_d0938cb5aa481123e81ba5634fcda69717185f23/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/narko/code/Barbell/app/build/intermediates/exploded-aar/com.google.firebase/firebase-auth-module/9.6.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="6ffe8b28ab61e5ee92ab9431a220379790c71ddf">
+        <dex dex="/home/narko/code/Barbell/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-auth-module-9.6.1_3deadd05987e26bd0321dad7c0bbd1392a42114d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/home/narko/code/Barbell/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-auth/9.6.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.2"
         sha1="da3f763afd39da1c947d9442847c837e9182a09f">
         <dex dex="/home/narko/code/Barbell/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-auth-9.6.1_c9d31069f96e0ecc5a3be2f67d3d2e0b4ace0d49/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/narko/code/Barbell/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0/jars/libs/internal_impl-24.0.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.2"
-        sha1="fcaf463e10e69c1923ccf1edeba3b4196d239e00">
-        <dex dex="/home/narko/code/Barbell/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.0.0_a527eb90eb1058cbe20ace42d2d5e42592d8c4e3/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -120,12 +273,30 @@
     </item>
     <item
         is-multidex="true"
+        jar="/home/narko/code/Barbell/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="9c4c3bc902450c39ed54de170db4fb12aea20a35">
+        <dex dex="/home/narko/code/Barbell/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-utils-24.2.1_0da64a7e9097feb07fcd52b8cfae12c8d5b9f48c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/home/narko/code/Barbell/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-auth-base/9.6.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.2"
         sha1="465f40f840e583f8b7421a3aacf3fbf08c28f00a">
         <dex dex="/home/narko/code/Barbell/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-auth-base-9.6.1_06eea9c9e4aa84f47978455849be6978072fa01d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/narko/code/Barbell/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
+        <dex dex="/home/narko/code/Barbell/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_67b898ac800e12a9099fdb1e523d0da2d8cfe3e6/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -138,87 +309,6 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/narko/code/Barbell/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.4.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.2"
-        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
-        <dex dex="/home/narko/code/Barbell/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-23.4.0_a6e0b9e14e6bb2f9a6f7394b4925c9a4f3d7b851/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/narko/code/Barbell/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.4.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.2"
-        sha1="ec75036c3c52e451d0cde50a5aedaf5fd32354a0">
-        <dex dex="/home/narko/code/Barbell/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-23.4.0_6daf9b334ccd45eb2c3d6b1d30a8c93d364365a7/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/narko/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/24.0.0/support-annotations-24.0.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.2"
-        sha1="2943c74db6d4346ab8c6531adac91fa05c137c40">
-        <dex dex="/home/narko/code/Barbell/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-24.0.0_8c4bb665dd825b67f93e68ab8f3c8af20715c43e/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/narko/code/Barbell/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics-impl/9.6.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.2"
-        sha1="0efd1b44f47c134fb245914a1d54a55adbfc2f8d">
-        <dex dex="/home/narko/code/Barbell/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-analytics-impl-9.6.1_b026fcecc2b0b0ccd567ccb2e3736b332711865b/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/narko/code/Barbell/app/build/intermediates/exploded-aar/com.google.firebase/firebase-common/9.6.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.2"
-        sha1="1ef72e72bc0d05602c366582afa9439f58bb31d6">
-        <dex dex="/home/narko/code/Barbell/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-common-9.6.1_1354fae3cfd5bd41106ae56255ca218b2fe5c7d7/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/narko/code/Barbell/app/build/intermediates/exploded-aar/com.google.firebase/firebase-database/9.6.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.2"
-        sha1="b75ecdd04a37d31b4a0da2729fc5c558962a529b">
-        <dex dex="/home/narko/code/Barbell/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-database-9.6.1_c34f666316a3fc7fe5684133166793e6b24a8977/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/narko/code/Barbell/app/build/intermediates/exploded-aar/com.google.firebase/firebase-iid/9.6.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.2"
-        sha1="1e14ebe1cda8491f152083e752ca5bf73cd37bff">
-        <dex dex="/home/narko/code/Barbell/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-iid-9.6.1_a8ec3b4e8d355de244925d49d483ba4f198dbb1c/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/narko/code/Barbell/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.2"
-        sha1="2f7e6e2dad1bccaf68a8820820adc6c0d5b96d37">
-        <dex dex="/home/narko/code/Barbell/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-24.0.0_6fe1c764a7460eba2dd73aa24bc4b30e80554d96/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/narko/code/Barbell/app/build/intermediates/exploded-aar/com.google.firebase/firebase-auth-module/9.6.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.2"
-        sha1="6ffe8b28ab61e5ee92ab9431a220379790c71ddf">
-        <dex dex="/home/narko/code/Barbell/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-auth-module-9.6.1_3deadd05987e26bd0321dad7c0bbd1392a42114d/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/home/narko/code/Barbell/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/9.6.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
@@ -228,21 +318,21 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/narko/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.2.2/3c8f6018eaa72d43b261181e801e6f8676c16ef6/jackson-databind-2.2.2.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.2"
-        sha1="3c8f6018eaa72d43b261181e801e6f8676c16ef6">
-        <dex dex="/home/narko/code/Barbell/app/build/intermediates/transforms/dex/debug/folders/1000/10/jackson-databind-2.2.2_ebfb892c0e331bfd2f493c894b419470a6144e0e/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/home/narko/code/Barbell/app/build/intermediates/exploded-aar/com.google.firebase/firebase-auth-common/9.6.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.2"
         sha1="77558e74bb2056ef38516296f13a27c4c4fc3e5c">
         <dex dex="/home/narko/code/Barbell/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-auth-common-9.6.1_4b4ddca2f07449c7b93f2bb0556fdb1d4110246e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/narko/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.2.2/3c8f6018eaa72d43b261181e801e6f8676c16ef6/jackson-databind-2.2.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="3c8f6018eaa72d43b261181e801e6f8676c16ef6">
+        <dex dex="/home/narko/code/Barbell/app/build/intermediates/transforms/dex/debug/folders/1000/10/jackson-databind-2.2.2_ebfb892c0e331bfd2f493c894b419470a6144e0e/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -264,12 +354,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/narko/code/Barbell/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/jars/classes.jar"
+        jar="/home/narko/.gradle/caches/modules-2/files-2.1/com.firebase/firebase-client-jvm/2.5.0/c0af904657634f7ab9cc21e75d80250570033321/firebase-client-jvm-2.5.0.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.2"
-        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
-        <dex dex="/home/narko/code/Barbell/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-23.4.0_150ebf44b3f2c93a4147a277c819349fdb0f7bfb/classes.dex" />
+        sha1="c0af904657634f7ab9cc21e75d80250570033321">
+        <dex dex="/home/narko/code/Barbell/app/build/intermediates/transforms/dex/debug/folders/1000/10/firebase-client-jvm-2.5.0_6fcb6c18187c38f7a79eaf5629462f37413e72fa/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -282,21 +372,30 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/narko/.gradle/caches/modules-2/files-2.1/com.firebase/firebase-client-jvm/2.5.0/c0af904657634f7ab9cc21e75d80250570033321/firebase-client-jvm-2.5.0.jar"
+        jar="/home/narko/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/24.2.1/support-annotations-24.2.1.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.2"
-        sha1="c0af904657634f7ab9cc21e75d80250570033321">
-        <dex dex="/home/narko/code/Barbell/app/build/intermediates/transforms/dex/debug/folders/1000/10/firebase-client-jvm-2.5.0_6fcb6c18187c38f7a79eaf5629462f37413e72fa/classes.dex" />
+        sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
+        <dex dex="/home/narko/code/Barbell/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-24.2.1_a0674bcc3eb061410c7077d6692b493f13ad0779/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/narko/code/Barbell/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.4.0/jars/classes.jar"
+        jar="/home/narko/code/Barbell/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.2"
-        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
-        <dex dex="/home/narko/code/Barbell/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-23.4.0_b5b12665860f06f04dc4511d63aac7f94391c89a/classes.dex" />
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/home/narko/code/Barbell/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-24.2.1_1a5b883aef75f8eae901107ca37be7d5900792b4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/narko/code/Barbell/app/build/intermediates/exploded-aar/com.afollestad.material-dialogs/core/0.9.0.2/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="d3f8ab57967a9149262ad36a46477fc2515f6ac8">
+        <dex dex="/home/narko/code/Barbell/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.afollestad.material-dialogs-core-0.9.0.2_eef15730695cc10c11b34088d500616e216792a4/classes.dex" />
     </item>
 
 </items>
