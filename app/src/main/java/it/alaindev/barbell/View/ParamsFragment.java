@@ -46,6 +46,9 @@ import java.util.Map;
 public class ParamsFragment extends Fragment {
 
     private OnParamsFragInteractionListener mListener;
+    private FirebaseUser fb_user;
+    private FirebaseDatabase database;
+    private String fb_index_user = "";
     ListView lv;
 
     public ParamsFragment() {
@@ -111,8 +114,8 @@ public class ParamsFragment extends Fragment {
     }
 
     private void getUserInfo()  {
-        final FirebaseUser fb_user = FirebaseAuth.getInstance().getCurrentUser();
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        fb_user = FirebaseAuth.getInstance().getCurrentUser();
+        database = FirebaseDatabase.getInstance();
 
         DatabaseReference ref = database.getReference(SecureConst.FIREBASE_USERS);
 
@@ -123,6 +126,7 @@ public class ParamsFragment extends Fragment {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         for (DataSnapshot data: dataSnapshot.getChildren()) {
+                            fb_index_user = data.getKey();
                             User user = data.getValue(User.class);
                             fillUI(user);
                         }
@@ -147,42 +151,30 @@ public class ParamsFragment extends Fragment {
                 try {
                     final Map.Entry<String, String> item = (Map.Entry<String, String>) parent.getItemAtPosition(position);
 
-//                    NumberPicker np = (NumberPicker) view.findViewById(R.id.numberpickerdate);
-//                    np.setMinValue(1);
-//                    np.setMaxValue(120);
-//                    np.setDisplayedValues(new String[]{"25","26","27"});
-//                    np.setValue(30);
-//                    np.setWrapSelectorWheel(false);
-//                    np.setOnScrollListener(new NumberPicker.OnScrollListener() {
-//                        @Override
-//                        public void onScrollStateChange(NumberPicker view, int scrollState) {
-//                            Toast.makeText(getActivity(), scrollState+"", Toast.LENGTH_SHORT).show();
-//                        }
-//                    });
-
-
-                    // TODO switch to discriminate what to do and what kind of type show in the dialog to edit
-
-//                    int type = InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD;
-                    int type = InputType.TYPE_NUMBER_FLAG_DECIMAL;
-
                     new MaterialDialog.Builder(getActivity())
                             .title(Constants.convertParamsDesc(item.getKey()))
                             .content(Constants.getDescriptionParamsDesc(item.getKey()))
                             .inputType(Constants.getInputTypeParamsDesc(item.getKey()))
                             .alwaysCallInputCallback()
+                            .onPositive(new MaterialDialog.SingleButtonCallback() {
+                                @Override
+                                public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                                    try {
+                                        updateFirebaseField(item.getKey(), dialog.getInputEditText().getText().toString());
+
+                                    } catch (NullPointerException e) {
+                                        Log.d("Params Fragment", e.toString());
+                                    }
+                                    Toast.makeText(getActivity(), "", Toast.LENGTH_LONG).show();
+                                }
+                            })
                             .input("Hint", item.getValue(), new MaterialDialog.InputCallback() {
                                 @Override
                                 public void onInput(MaterialDialog dialog, CharSequence input) {
-                                    // If input inserted is not valid disable commit changes
-                                    boolean validity = checkValidityInput(item.getKey(), input.toString());
-                                    if (validity) {
-                                        dialog.getActionButton(DialogAction.POSITIVE).setEnabled(true);
-                                    } else {
-                                        dialog.getActionButton(DialogAction.POSITIVE).setEnabled(false);
-                                    }
+                                    // Check input validity, if false disable OK button
+                                    dialog.getActionButton(DialogAction.POSITIVE).setEnabled( checkValidityInput(item.getKey(), input.toString()) );
 
-                                   // TODO update firebase and CHECK if automatically update with the callback in getUserInfo()
+                                    // Update firebase and CHECK if automatically update with the callback in getUserInfo()
 
                                 }
                             }).show();
@@ -193,6 +185,41 @@ public class ParamsFragment extends Fragment {
 
             }
         });
+    }
+
+    private void updateFirebaseField (String key, String input) {
+
+        DatabaseReference ref = database.getReference(SecureConst.FIREBASE_USERS + "/" + fb_index_user);
+        Map<String, Object> userupdate = new HashMap<>();
+
+        switch (key) {
+            case Constants.USER_PARAM_NAME:
+                userupdate.put(key, input);
+                break;
+            case Constants.USER_PARAM_AGE:
+                userupdate.put(key, Integer.parseInt(input));
+                break;
+            case Constants.USER_PARAM_WEIGHT:
+                userupdate.put(key, Integer.parseInt(input));
+                break;
+            case Constants.USER_PARAM_HEIGHT:
+                userupdate.put(key, Integer.parseInt(input));
+                break;
+            case Constants.USER_PARAM_ACTIV:
+                userupdate.put(key, Integer.parseInt(input));
+                break;
+            case Constants.USER_PARAM_NUMWOS:
+                userupdate.put(key, Integer.parseInt(input));
+                break;
+            case Constants.USER_PARAM_MINUTES:
+                userupdate.put(key, Integer.parseInt(input));
+                break;
+            case Constants.USER_PARAM_HARDWO:
+                userupdate.put(key, Integer.parseInt(input));
+                break;
+        }
+
+        ref.updateChildren(userupdate);
     }
 
     private boolean checkValidityInput (String key, String input) {

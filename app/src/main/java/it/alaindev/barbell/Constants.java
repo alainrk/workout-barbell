@@ -59,21 +59,21 @@ public class Constants {
     public static String getDescriptionParamsDesc (String desc) {
         switch (desc) {
             case Constants.USER_PARAM_NAME:
-                return "";
+                return "Insert your name";
             case Constants.USER_PARAM_AGE:
-                return "";
+                return "Insert your age";
             case Constants.USER_PARAM_WEIGHT:
-                return "";
+                return "Insert your weight (kg)";
             case Constants.USER_PARAM_HEIGHT:
-                return "";
+                return "Insert your height (cm)";
             case Constants.USER_PARAM_ACTIV:
-                return "";
+                return "Daily activity: 1 = Sedentary, 4 = Hard effort jobs";
             case Constants.USER_PARAM_NUMWOS:
-                return "";
+                return "Number of workouts per week";
             case Constants.USER_PARAM_MINUTES:
-                return "";
+                return "Average workout duration";
             case Constants.USER_PARAM_HARDWO:
-                return "";
+                return "Workout intensity: 1 = Light, 4 = Very hard";
         }
         return "";
     }
@@ -83,19 +83,19 @@ public class Constants {
             case Constants.USER_PARAM_NAME:
                 return InputType.TYPE_CLASS_TEXT;
             case Constants.USER_PARAM_AGE:
-                return InputType.TYPE_CLASS_TEXT;
+                return InputType.TYPE_CLASS_NUMBER;
             case Constants.USER_PARAM_WEIGHT:
-                return InputType.TYPE_CLASS_TEXT;
+                return InputType.TYPE_CLASS_NUMBER;
             case Constants.USER_PARAM_HEIGHT:
-                return InputType.TYPE_CLASS_TEXT;
+                return InputType.TYPE_CLASS_NUMBER;
             case Constants.USER_PARAM_ACTIV:
-                return InputType.TYPE_CLASS_TEXT;
+                return InputType.TYPE_CLASS_NUMBER;
             case Constants.USER_PARAM_NUMWOS:
-                return InputType.TYPE_CLASS_TEXT;
+                return InputType.TYPE_CLASS_NUMBER;
             case Constants.USER_PARAM_MINUTES:
-                return InputType.TYPE_CLASS_TEXT;
+                return InputType.TYPE_CLASS_NUMBER;
             case Constants.USER_PARAM_HARDWO:
-                return InputType.TYPE_CLASS_TEXT;
+                return InputType.TYPE_CLASS_NUMBER;
         }
         return InputType.TYPE_CLASS_TEXT;
     }

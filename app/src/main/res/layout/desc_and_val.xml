@@ -10,7 +10,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/desctv"
         android:layout_weight="0.5"
-        android:paddingLeft="5pt"/>
+        android:paddingLeft="5pt"
+        android:paddingTop="5pt"
+        android:paddingBottom="5pt"/>
 
     <TextView
         android:text="TextView"
@@ -20,5 +22,7 @@
         android:layout_weight="0.5"
         android:textColor="@color/colorPrimaryDark"
         android:gravity="right"
-        android:paddingRight="10pt"/>
+        android:paddingRight="10pt"
+        android:paddingTop="5pt"
+        android:paddingBottom="5pt"/>
 </LinearLayout>

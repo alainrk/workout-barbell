@@ -281,7 +281,7 @@ public class LoginActivity extends AppCompatActivity implements
                         if (o == null && !hackForUserAdd) {
                             hackForUserAdd = true;
                             DatabaseReference user_ref = database.getReference(SecureConst.FIREBASE_USERS);
-                            User u = new User(user.getUid(), "Your name", 25, 70, 180, 2, 5, 60, 2);
+                            User u = new User(user.getUid(), "Morca Padonna", 25, 70, 180, 2, 5, 60, 2);
                             user_ref.push().setValue(u).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 // If adding succeed start activity
                                 @Override
