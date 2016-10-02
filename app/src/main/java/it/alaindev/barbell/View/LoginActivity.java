@@ -16,7 +16,9 @@
 
 package it.alaindev.barbell.View;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -48,6 +50,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import it.alaindev.barbell.Constants;
 import it.alaindev.barbell.R;
 import it.alaindev.barbell.SecureConst;
 import it.alaindev.barbell.User;
@@ -182,6 +185,11 @@ public class LoginActivity extends AppCompatActivity implements
     }
 
     private void signOut() {
+        // Remove from shared pref
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(SecureConst.FIREBASE_USERS);
+        final SharedPreferences sharedPref = getApplicationContext().getSharedPreferences(Constants.PREF_FILE, Context.MODE_PRIVATE);
+        sharedPref.edit().putString(Constants.FIREBASE_INDEX_USER, "").commit();
+
         // Firebase sign out
         mAuth.signOut();
 
@@ -277,7 +285,7 @@ public class LoginActivity extends AppCompatActivity implements
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         Object o = dataSnapshot.getValue();
-                        // There is no user entry, add it
+                        // There is no user entry, add an user with default params
                         if (o == null && !hackForUserAdd) {
                             hackForUserAdd = true;
                             DatabaseReference user_ref = database.getReference(SecureConst.FIREBASE_USERS);
@@ -287,8 +295,7 @@ public class LoginActivity extends AppCompatActivity implements
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
-                                        Intent mainact = new Intent(LoginActivity.this, MainActivity.class);
-                                        startActivity(mainact);
+                                        startApplication();
                                     } else {
                                         Toast.makeText(getApplicationContext(), "Login did not succeed. Try again.", Toast.LENGTH_LONG).show();
                                     }
@@ -298,8 +305,7 @@ public class LoginActivity extends AppCompatActivity implements
                         else {
                             // We are already logged AND firebase entry exists AND we are not here from app to logout
                             if (!hereToLogout) {
-                                Intent mainact = new Intent(LoginActivity.this, MainActivity.class);
-                                startActivity(mainact);
+                                startApplication();
                             } else {
                                 // Come back to normal value to allow user enter the app once is logged again
                                 hereToLogout = false;
@@ -312,5 +318,38 @@ public class LoginActivity extends AppCompatActivity implements
 
                     }
                 });
+    }
+
+    private void startApplication () {
+        // TODO Get here all the informations and set them in shared preferences (see getUserInfo() in paramsFrag)
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(SecureConst.FIREBASE_USERS);
+        final Intent mainact = new Intent(LoginActivity.this, MainActivity.class);
+        final SharedPreferences sharedPref = getApplicationContext().getSharedPreferences(Constants.PREF_FILE, Context.MODE_PRIVATE);
+
+        //if (sharedPref.getString(Constants.FIREBASE_INDEX_USER, "").equals("")) {
+        if (true) {
+            // Check if there is this user in firebase DB
+            ref.orderByChild(SecureConst.FIREBASE_USER_UID)
+                    .equalTo(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                    .addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            for (DataSnapshot data: dataSnapshot.getChildren()) {
+                                String fb_index_user = data.getKey();
+
+                                sharedPref.edit().putString(Constants.FIREBASE_INDEX_USER, fb_index_user).commit();
+                                startActivity(mainact);
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+        } else {
+            startActivity(mainact);
+        }
     }
 }

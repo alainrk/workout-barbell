@@ -2,6 +2,7 @@ package it.alaindev.barbell.View;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -36,6 +37,7 @@ import it.alaindev.barbell.Constants;
 import it.alaindev.barbell.DescValAdapter;
 import it.alaindev.barbell.R;
 import it.alaindev.barbell.SecureConst;
+import it.alaindev.barbell.SharedUtils;
 import it.alaindev.barbell.User;
 import it.alaindev.barbell.Utils;
 
@@ -46,9 +48,6 @@ import java.util.Map;
 public class ParamsFragment extends Fragment {
 
     private OnParamsFragInteractionListener mListener;
-    private FirebaseUser fb_user;
-    private FirebaseDatabase database;
-    private String fb_index_user = "";
     ListView lv;
 
     public ParamsFragment() {
@@ -114,22 +113,14 @@ public class ParamsFragment extends Fragment {
     }
 
     private void getUserInfo()  {
-        fb_user = FirebaseAuth.getInstance().getCurrentUser();
-        database = FirebaseDatabase.getInstance();
-
-        DatabaseReference ref = database.getReference(SecureConst.FIREBASE_USERS);
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(SecureConst.FIREBASE_USERS + "/" + SharedUtils.getFbUserIdx(getContext()));
 
         // Check if there is this user in firebase DB
-        ref.orderByChild(SecureConst.FIREBASE_USER_UID)
-                .equalTo(fb_user.getUid())
-                .addValueEventListener(new ValueEventListener() {
+        ref.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        for (DataSnapshot data: dataSnapshot.getChildren()) {
-                            fb_index_user = data.getKey();
-                            User user = data.getValue(User.class);
-                            fillUI(user);
-                        }
+                        User user = dataSnapshot.getValue(User.class);
+                        fillUI(user);
                     }
 
                     @Override
@@ -152,30 +143,26 @@ public class ParamsFragment extends Fragment {
                     final Map.Entry<String, String> item = (Map.Entry<String, String>) parent.getItemAtPosition(position);
 
                     new MaterialDialog.Builder(getActivity())
-                            .title(Constants.convertParamsDesc(item.getKey()))
-                            .content(Constants.getDescriptionParamsDesc(item.getKey()))
-                            .inputType(Constants.getInputTypeParamsDesc(item.getKey()))
+                            .title(User.convertParamsDesc(item.getKey()))
+                            .content(User.getDescriptionParamsDesc(item.getKey()))
+                            .inputType(User.getInputTypeParamsDesc(item.getKey()))
                             .alwaysCallInputCallback()
                             .onPositive(new MaterialDialog.SingleButtonCallback() {
                                 @Override
                                 public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                                     try {
                                         updateFirebaseField(item.getKey(), dialog.getInputEditText().getText().toString());
-
                                     } catch (NullPointerException e) {
                                         Log.d("Params Fragment", e.toString());
                                     }
                                     Toast.makeText(getActivity(), "", Toast.LENGTH_LONG).show();
                                 }
                             })
-                            .input("Hint", item.getValue(), new MaterialDialog.InputCallback() {
+                            .input("TODO Hint", item.getValue(), new MaterialDialog.InputCallback() {
                                 @Override
                                 public void onInput(MaterialDialog dialog, CharSequence input) {
                                     // Check input validity, if false disable OK button
                                     dialog.getActionButton(DialogAction.POSITIVE).setEnabled( checkValidityInput(item.getKey(), input.toString()) );
-
-                                    // Update firebase and CHECK if automatically update with the callback in getUserInfo()
-
                                 }
                             }).show();
                 } catch (Exception e) {
@@ -189,32 +176,32 @@ public class ParamsFragment extends Fragment {
 
     private void updateFirebaseField (String key, String input) {
 
-        DatabaseReference ref = database.getReference(SecureConst.FIREBASE_USERS + "/" + fb_index_user);
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(SecureConst.FIREBASE_USERS + "/" + SharedUtils.getFbUserIdx(getContext()));
         Map<String, Object> userupdate = new HashMap<>();
 
         switch (key) {
-            case Constants.USER_PARAM_NAME:
+            case User.USER_PARAM_NAME:
                 userupdate.put(key, input);
                 break;
-            case Constants.USER_PARAM_AGE:
+            case User.USER_PARAM_AGE:
                 userupdate.put(key, Integer.parseInt(input));
                 break;
-            case Constants.USER_PARAM_WEIGHT:
+            case User.USER_PARAM_WEIGHT:
                 userupdate.put(key, Integer.parseInt(input));
                 break;
-            case Constants.USER_PARAM_HEIGHT:
+            case User.USER_PARAM_HEIGHT:
                 userupdate.put(key, Integer.parseInt(input));
                 break;
-            case Constants.USER_PARAM_ACTIV:
+            case User.USER_PARAM_ACTIV:
                 userupdate.put(key, Integer.parseInt(input));
                 break;
-            case Constants.USER_PARAM_NUMWOS:
+            case User.USER_PARAM_NUMWOS:
                 userupdate.put(key, Integer.parseInt(input));
                 break;
-            case Constants.USER_PARAM_MINUTES:
+            case User.USER_PARAM_MINUTES:
                 userupdate.put(key, Integer.parseInt(input));
                 break;
-            case Constants.USER_PARAM_HARDWO:
+            case User.USER_PARAM_HARDWO:
                 userupdate.put(key, Integer.parseInt(input));
                 break;
         }
@@ -226,34 +213,34 @@ public class ParamsFragment extends Fragment {
         boolean res = false;
         Integer i;
         switch (key) {
-            case Constants.USER_PARAM_NAME:
+            case User.USER_PARAM_NAME:
                 res = (input.length() > 3 && input.length() < 20);
                 break;
-            case Constants.USER_PARAM_AGE:
+            case User.USER_PARAM_AGE:
                 i = (Utils.getIfValidInt(input));
                 res = (i != null && (i > 0 && i < 121));
                 break;
-            case Constants.USER_PARAM_WEIGHT:
+            case User.USER_PARAM_WEIGHT:
                 i = (Utils.getIfValidInt(input));
                 res = (i != null && (i > 29 && i < 351));
                 break;
-            case Constants.USER_PARAM_HEIGHT:
+            case User.USER_PARAM_HEIGHT:
                 i = (Utils.getIfValidInt(input));
                 res = (i != null && (i > 29 && i < 301));
                 break;
-            case Constants.USER_PARAM_ACTIV:
+            case User.USER_PARAM_ACTIV:
                 i = (Utils.getIfValidInt(input));
                 res = (i != null && (i > 0 && i < 5));
                 break;
-            case Constants.USER_PARAM_NUMWOS:
+            case User.USER_PARAM_NUMWOS:
                 i = (Utils.getIfValidInt(input));
                 res = (i != null && (i > 0 && i < 8));
                 break;
-            case Constants.USER_PARAM_MINUTES:
+            case User.USER_PARAM_MINUTES:
                 i = (Utils.getIfValidInt(input));
                 res = (i != null && (i > 0 && i < 361));
                 break;
-            case Constants.USER_PARAM_HARDWO:
+            case User.USER_PARAM_HARDWO:
                 i = (Utils.getIfValidInt(input));
                 res = (i != null && (i > 0 && i < 5));
                 break;

@@ -1,5 +1,7 @@
 package it.alaindev.barbell;
 
+import android.text.InputType;
+
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -88,5 +90,91 @@ public class User {
 
     public int getHardwo() {
         return hardwo;
+    }
+
+    // Static stuff related to user
+
+    public static final String USER_PARAM_NAME_DESC = "Name";
+    public static final String USER_PARAM_AGE_DESC = "Age";
+    public static final String USER_PARAM_WEIGHT_DESC = "Weight";
+    public static final String USER_PARAM_HEIGHT_DESC = "Height";
+    public static final String USER_PARAM_ACTIV_DESC = "Daily activity";
+    public static final String USER_PARAM_NUMWOS_DESC = "Workouts per week";
+    public static final String USER_PARAM_MINUTES_DESC = "Workout time duration";
+    public static final String USER_PARAM_HARDWO_DESC = "Workout intensity";
+
+    public static final String USER_PARAM_NAME = "name";
+    public static final String USER_PARAM_AGE = "age";
+    public static final String USER_PARAM_WEIGHT = "weight";
+    public static final String USER_PARAM_HEIGHT = "height";
+    public static final String USER_PARAM_ACTIV = "activity";
+    public static final String USER_PARAM_NUMWOS = "numwos";
+    public static final String USER_PARAM_MINUTES = "minutes";
+    public static final String USER_PARAM_HARDWO = "hardwo";
+
+    public static String convertParamsDesc (String desc) {
+        switch (desc) {
+            case USER_PARAM_NAME:
+                return USER_PARAM_NAME_DESC;
+            case USER_PARAM_AGE:
+                return USER_PARAM_AGE_DESC;
+            case USER_PARAM_WEIGHT:
+                return USER_PARAM_WEIGHT_DESC;
+            case USER_PARAM_HEIGHT:
+                return USER_PARAM_HEIGHT_DESC;
+            case USER_PARAM_ACTIV:
+                return USER_PARAM_ACTIV_DESC;
+            case USER_PARAM_NUMWOS:
+                return USER_PARAM_NUMWOS_DESC;
+            case USER_PARAM_MINUTES:
+                return USER_PARAM_MINUTES_DESC;
+            case USER_PARAM_HARDWO:
+                return USER_PARAM_HARDWO_DESC;
+        }
+        return "";
+    }
+
+    public static String getDescriptionParamsDesc (String desc) {
+        switch (desc) {
+            case USER_PARAM_NAME:
+                return "Insert your name";
+            case USER_PARAM_AGE:
+                return "Insert your age";
+            case USER_PARAM_WEIGHT:
+                return "Insert your weight (kg)";
+            case USER_PARAM_HEIGHT:
+                return "Insert your height (cm)";
+            case USER_PARAM_ACTIV:
+                return "Daily activity: 1 = Sedentary, 4 = Hard effort jobs";
+            case USER_PARAM_NUMWOS:
+                return "Number of workouts per week";
+            case USER_PARAM_MINUTES:
+                return "Average workout duration";
+            case USER_PARAM_HARDWO:
+                return "Workout intensity: 1 = Light, 4 = Very hard";
+        }
+        return "";
+    }
+
+    public static int getInputTypeParamsDesc (String desc) {
+        switch (desc) {
+            case USER_PARAM_NAME:
+                return InputType.TYPE_CLASS_TEXT;
+            case USER_PARAM_AGE:
+                return InputType.TYPE_CLASS_NUMBER;
+            case USER_PARAM_WEIGHT:
+                return InputType.TYPE_CLASS_NUMBER;
+            case USER_PARAM_HEIGHT:
+                return InputType.TYPE_CLASS_NUMBER;
+            case USER_PARAM_ACTIV:
+                return InputType.TYPE_CLASS_NUMBER;
+            case USER_PARAM_NUMWOS:
+                return InputType.TYPE_CLASS_NUMBER;
+            case USER_PARAM_MINUTES:
+                return InputType.TYPE_CLASS_NUMBER;
+            case USER_PARAM_HARDWO:
+                return InputType.TYPE_CLASS_NUMBER;
+        }
+        return InputType.TYPE_CLASS_TEXT;
     }
 }

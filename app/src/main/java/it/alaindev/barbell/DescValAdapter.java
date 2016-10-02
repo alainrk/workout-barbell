@@ -43,33 +43,33 @@ public class DescValAdapter extends ArrayAdapter<Map.Entry<String, String>> {
         String desc = descval.getKey();
         String val = descval.getValue();
         switch (desc) {
-            case Constants.USER_PARAM_NAME:
-                desc = Constants.USER_PARAM_NAME_DESC;
+            case User.USER_PARAM_NAME:
+                desc = User.USER_PARAM_NAME_DESC;
                 break;
-            case Constants.USER_PARAM_AGE:
-                desc = Constants.USER_PARAM_AGE_DESC;
+            case User.USER_PARAM_AGE:
+                desc = User.USER_PARAM_AGE_DESC;
                 break;
-            case Constants.USER_PARAM_WEIGHT:
-                desc = Constants.USER_PARAM_WEIGHT_DESC;
+            case User.USER_PARAM_WEIGHT:
+                desc = User.USER_PARAM_WEIGHT_DESC;
                 val += " kg";
                 break;
-            case Constants.USER_PARAM_HEIGHT:
-                desc = Constants.USER_PARAM_HEIGHT_DESC;
+            case User.USER_PARAM_HEIGHT:
+                desc = User.USER_PARAM_HEIGHT_DESC;
                 val += " cm";
                 break;
-            case Constants.USER_PARAM_ACTIV:
-                desc = Constants.USER_PARAM_ACTIV_DESC;
+            case User.USER_PARAM_ACTIV:
+                desc = User.USER_PARAM_ACTIV_DESC;
                 val += "/4";
                 break;
-            case Constants.USER_PARAM_NUMWOS:
-                desc = Constants.USER_PARAM_NUMWOS_DESC;
+            case User.USER_PARAM_NUMWOS:
+                desc = User.USER_PARAM_NUMWOS_DESC;
                 break;
-            case Constants.USER_PARAM_MINUTES:
-                desc = Constants.USER_PARAM_MINUTES_DESC;
+            case User.USER_PARAM_MINUTES:
+                desc = User.USER_PARAM_MINUTES_DESC;
                 val += " min";
                 break;
-            case Constants.USER_PARAM_HARDWO:
-                desc = Constants.USER_PARAM_HARDWO_DESC;
+            case User.USER_PARAM_HARDWO:
+                desc = User.USER_PARAM_HARDWO_DESC;
                 val += "/4";
                 break;
         }
