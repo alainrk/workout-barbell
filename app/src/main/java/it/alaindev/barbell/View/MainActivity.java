@@ -19,7 +19,7 @@ import android.widget.Toast;
 import it.alaindev.barbell.R;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, ParamsFragment.OnParamsFragInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity
                     workoutsFragment.getTag()
             ).commit();
         } else if (id == R.id.nav_params) {
-            ParamsFragment paramsFragment = ParamsFragment.newInstance();
+            ParamsFragment paramsFragment = new ParamsFragment();
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(
                     R.id.contentMain_forFragments,
@@ -120,10 +120,5 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    @Override
-    public void onFragmentInteraction(String s) {
-        Toast.makeText(this, s, Toast.LENGTH_LONG).show();
     }
 }

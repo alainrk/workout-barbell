@@ -47,30 +47,10 @@ import java.util.Map;
 
 public class ParamsFragment extends Fragment {
 
-    private OnParamsFragInteractionListener mListener;
     ListView lv;
 
     public ParamsFragment() {
         // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ParamsFragment newInstance() {
-        ParamsFragment fragment = new ParamsFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-        }
     }
 
     @Override
@@ -82,34 +62,6 @@ public class ParamsFragment extends Fragment {
 
         getUserInfo();
         return view;
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnParamsFragInteractionListener) {
-            mListener = (OnParamsFragInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnParamsFragInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     */
-    public interface OnParamsFragInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(String s);
     }
 
     private void getUserInfo()  {
